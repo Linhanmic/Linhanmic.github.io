@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>test</title>
-    <link href="/2024/08/31/Windows%E5%85%B3%E9%97%AD%E7%AC%94%E8%AE%B0%E6%9C%AC%E9%94%AE%E7%9B%98/"/>
-    <url>/2024/08/31/Windows%E5%85%B3%E9%97%AD%E7%AC%94%E8%AE%B0%E6%9C%AC%E9%94%AE%E7%9B%98/</url>
+    <title>Windows 关闭笔记本自带键盘</title>
+    <link href="/2024/07/31/Windows%E5%85%B3%E9%97%AD%E7%AC%94%E8%AE%B0%E6%9C%AC%E9%94%AE%E7%9B%98/"/>
+    <url>/2024/07/31/Windows%E5%85%B3%E9%97%AD%E7%AC%94%E8%AE%B0%E6%9C%AC%E9%94%AE%E7%9B%98/</url>
     
-    <content type="html"><![CDATA[<h1 id="Windows-关闭笔记本自带键盘"><a href="#Windows-关闭笔记本自带键盘" class="headerlink" title="Windows 关闭笔记本自带键盘"></a>Windows 关闭笔记本自带键盘</h1><h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>关闭笔记本自带的键盘</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">sc config i8042prt <span class="hljs-built_in">start</span> = disabled<br></code></pre></td></tr></table></figure><p>打开笔记本自带的键盘</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">sc config i8042prt <span class="hljs-built_in">start</span>= auto<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="Windows-关闭笔记本自带键盘"><a href="#Windows-关闭笔记本自带键盘" class="headerlink" title="Windows 关闭笔记本自带键盘"></a>Windows 关闭笔记本自带键盘</h1><h2 id="关闭笔记本自带的键盘"><a href="#关闭笔记本自带的键盘" class="headerlink" title="关闭笔记本自带的键盘"></a>关闭笔记本自带的键盘</h2><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">sc config i8042prt <span class="hljs-built_in">start</span> = disabled<br></code></pre></td></tr></table></figure><h2 id="打开笔记本自带的键盘"><a href="#打开笔记本自带的键盘" class="headerlink" title="打开笔记本自带的键盘"></a>打开笔记本自带的键盘</h2><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">sc config i8042prt <span class="hljs-built_in">start</span>= auto<br></code></pre></td></tr></table></figure>]]></content>
     
     
     
