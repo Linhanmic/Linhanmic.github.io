@@ -76,5 +76,24 @@
   
   
   
+  <entry>
+    <title>Vim -多行注释</title>
+    <link href="/2023/09/05/Vim-%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/"/>
+    <url>/2023/09/05/Vim-%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Vim-多行注释"><a href="#Vim-多行注释" class="headerlink" title="Vim -多行注释"></a>Vim -多行注释</h1><p>操作步骤如下：</p><ol><li>移动光标到要注释的起始行的行首</li><li>Ctrl + q 进入可视块模式</li><li>移动光标选中要注释的代码行</li><li>Shift + i 进入插入模式，键入当前语言的注释符</li><li>按Esc键后，之前选中的代码行会全部加上了注释符</li></ol><p>其实，这里并不局限于注释代码，这里的操作叫<code>列插入</code>更合适，也就是可以在多行代码的同一列插入同样的任意字符。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Vim</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
   
 </search>
