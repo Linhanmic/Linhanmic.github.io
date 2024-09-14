@@ -137,6 +137,31 @@
   
   
   <entry>
+    <title>CMake 命令 execute_process 详解</title>
+    <link href="/2024/04/15/CMake%20%E5%91%BD%E4%BB%A4execute_jprocess/"/>
+    <url>/2024/04/15/CMake%20%E5%91%BD%E4%BB%A4execute_jprocess/</url>
+    
+    <content type="html"><![CDATA[<h1 id="CMake-命令-execute-process-详解"><a href="#CMake-命令-execute-process-详解" class="headerlink" title="CMake 命令 execute_process 详解"></a>CMake 命令 execute_process 详解</h1><p><code>execute_process</code> 是 CMake 中的一个命令，用于在配置阶段执行外部进程。它可以运行外部程序或脚本，并捕获其输出。以下是 <code>execute_process</code> 命令的详细说明：</p><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">execute_process</span>(<span class="hljs-keyword">COMMAND</span> command1 [args1...]<br>                [<span class="hljs-keyword">COMMAND</span> command2 [args2...] ...]<br>                [WORKING_DIRECTORY dir]<br>                [TIMEOUT time]<br>                [RESULT_VARIABLE var]<br>                [OUTPUT_VARIABLE out_var]<br>                [ERROR_VARIABLE err_var]<br>                [INPUT_FILE <span class="hljs-keyword">file</span>]<br>                [OUTPUT_FILE <span class="hljs-keyword">file</span>]<br>                [ERROR_FILE <span class="hljs-keyword">file</span>]<br>                [OUTPUT_QUIET]<br>                [ERROR_QUIET]<br>                [OUTPUT_STRIP_TRAILING_WHITESPACE]<br>                [ERROR_STRIP_TRAILING_WHITESPACE]<br>                [ENCODING encoding])<br></code></pre></td></tr></table></figure><h2 id="参数详解"><a href="#参数详解" class="headerlink" title="参数详解"></a>参数详解</h2><ul><li><code>COMMAND</code>：指定要执行的命令及其参数。可以指定多个命令，按顺序执行。</li><li><code>WORKING_DIRECTORY</code>：指定命令执行时的工作目录。</li><li><code>TIMEOUT</code>：指定命令执行的超时时间（以秒为单位）。</li><li><code>RESULT_VARIABLE</code>：指定一个变量，用于存储命令的返回码。</li><li><code>OUTPUT_VARIABLE</code>：指定一个变量，用于存储命令的标准输出。</li><li><code>ERROR_VARIABLE</code>：指定一个变量，用于存储命令的标准错误输出。</li><li><code>INPUT_FILE</code>：指定一个文件，其内容将作为命令的标准输入。</li><li><code>OUTPUT_FILE</code>：指定一个文件，用于存储命令的标准输出。</li><li><code>ERROR_FILE</code>：指定一个文件，用于存储命令的标准错误输出。</li><li><code>OUTPUT_QUIET</code>：不显示命令的标准输出。</li><li><code>ERROR_QUIET</code>：不显示命令的标准错误输出。</li><li><code>OUTPUT_STRIP_TRAILING_WHITESPACE</code>：去除标准输出末尾的空白字符。</li><li><code>ERROR_STRIP_TRAILING_WHITESPACE</code>：去除标准错误输出末尾的空白字符。</li><li><code>ENCODING</code>：指定输出的编码格式。</li></ul><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>以下是一个简单的示例，展示如何使用 <code>execute_process</code> 命令：</p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.0</span>)<br><br><span class="hljs-keyword">project</span>(ExecuteProcessExample)<br><br><span class="hljs-comment"># 执行一个简单的命令，并捕获其输出</span><br><span class="hljs-keyword">execute_process</span>(<br>    <span class="hljs-keyword">COMMAND</span> echo <span class="hljs-string">&quot;Hello, World!&quot;</span><br>    OUTPUT_VARIABLE output<br>    ERROR_VARIABLE error<br>    RESULT_VARIABLE result<br>)<br><br><span class="hljs-comment"># 打印输出和结果</span><br><span class="hljs-keyword">message</span>(<span class="hljs-string">&quot;Output: $&#123;output&#125;&quot;</span>)<br><span class="hljs-keyword">message</span>(<span class="hljs-string">&quot;Error: $&#123;error&#125;&quot;</span>)<br><span class="hljs-keyword">message</span>(<span class="hljs-string">&quot;Result: $&#123;result&#125;&quot;</span>)<br></code></pre></td></tr></table></figure><p>在这个示例中，<code>execute_process</code> 命令执行了 <code>echo &quot;Hello, World!&quot;</code>，并将其标准输出、标准错误和返回码分别存储在 <code>output</code>、<code>error</code> 和 <code>result</code> 变量中。随后，使用 <code>message</code> 命令打印这些变量的值。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>CMake</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CMake</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Windows 关闭笔记本自带键盘</title>
     <link href="/2024/04/15/Windows%E5%85%B3%E9%97%AD%E7%AC%94%E8%AE%B0%E6%9C%AC%E9%94%AE%E7%9B%98/"/>
     <url>/2024/04/15/Windows%E5%85%B3%E9%97%AD%E7%AC%94%E8%AE%B0%E6%9C%AC%E9%94%AE%E7%9B%98/</url>
