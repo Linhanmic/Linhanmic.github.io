@@ -19,23 +19,23 @@
   <meta name="author" content="Linhanmic">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在C++中，枚举（enum）是一种用户定义的类型，用于表示一组命名的常量。C++11引入了强类型枚举（enum class），提供了更强的类型安全性和作用域控制。">
+    <meta name="description" content="在 Shell 脚本中，命令替换是一种将命令的输出作为另一个命令的参数或变量值的方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++ 枚举类型">
-<meta property="og:url" content="https://linhanmic.github.io/2024/09/13/C++%20%E6%9E%9A%E4%B8%BE/index.html">
+<meta property="og:title" content="Shell 命令替换">
+<meta property="og:url" content="https://linhanmic.github.io/2024/09/14/Shell%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Linhanmic">
-<meta property="og:description" content="在C++中，枚举（enum）是一种用户定义的类型，用于表示一组命名的常量。C++11引入了强类型枚举（enum class），提供了更强的类型安全性和作用域控制。">
+<meta property="og:description" content="在 Shell 脚本中，命令替换是一种将命令的输出作为另一个命令的参数或变量值的方法。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-13T07:19:22.000Z">
-<meta property="article:modified_time" content="2024-09-13T07:35:57.007Z">
+<meta property="article:published_time" content="2024-09-14T15:20:35.000Z">
+<meta property="article:modified_time" content="2024-09-14T15:34:58.237Z">
 <meta property="article:author" content="Linhanmic">
-<meta property="article:tag" content="C++">
-<meta property="article:tag" content="枚举类型">
+<meta property="article:tag" content="Shell">
+<meta property="article:tag" content="命令替换">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>C++ 枚举类型 - Linhanmic</title>
+  <title>Shell 命令替换 - Linhanmic</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="C++ 枚举类型"></span>
+            <span id="subtitle" data-typed-text="Shell 命令替换"></span>
           
         </div>
 
@@ -217,8 +217,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-13 15:19" pubdate>
-          2024年9月13日 下午
+        <time datetime="2024-09-14 23:20" pubdate>
+          2024年9月14日 晚上
         </time>
       </span>
     
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          894 字
+          274 字
         
       </span>
     
@@ -240,7 +240,7 @@
         
         
         
-          8 分钟
+          3 分钟
         
       </span>
     
@@ -277,55 +277,33 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">C++ 枚举类型</h1>
+            <h1 id="seo-header">Shell 命令替换</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="C-枚举类型"><a href="#C-枚举类型" class="headerlink" title="C++ 枚举类型"></a>C++ 枚举类型</h1><p>在C++中，枚举（enum）是一种用户定义的类型，用于表示一组命名的常量。C++11引入了强类型枚举（enum class），提供了更强的类型安全性和作用域控制。以下是对传统枚举（enum）和强类型枚举（enum class）的详细总结。</p>
-<h3 id="1-传统枚举（enum）"><a href="#1-传统枚举（enum）" class="headerlink" title="1. 传统枚举（enum）"></a>1. 传统枚举（enum）</h3><p>传统枚举是C++中最早引入的一种枚举类型，定义在全局作用域或类作用域中。传统枚举的枚举值是整型常量，可以隐式转换为整数类型。</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Color</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    Color color = Red;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Color: &quot;</span> &lt;&lt; color &lt;&lt; std::endl; <span class="hljs-comment">// 输出：Color: 0</span><br><br>    <span class="hljs-comment">// 隐式转换为整数</span><br>    <span class="hljs-type">int</span> colorValue = color;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Color value: &quot;</span> &lt;&lt; colorValue &lt;&lt; std::endl; <span class="hljs-comment">// 输出：Color value: 0</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+                <h1 id="Shell-命令替换"><a href="#Shell-命令替换" class="headerlink" title="Shell 命令替换"></a>Shell 命令替换</h1><p>在 Shell 脚本中，命令替换是一种将命令的输出作为另一个命令的参数或变量值的方法。命令替换有两种语法：</p>
+<ol>
+<li>反引号（<code>`command`</code>）</li>
+<li>$() 语法（<code>$(command)</code>）</li>
+</ol>
+<h2 id="反引号语法"><a href="#反引号语法" class="headerlink" title="反引号语法"></a>反引号语法</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">output=`<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>`<br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$output</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
-<li><strong>隐式转换</strong>：枚举值可以隐式转换为整数类型。</li>
-<li><strong>作用域</strong>：枚举值在定义的作用域内是全局的，可能会导致命名冲突。</li>
-<li><strong>类型安全性</strong>：较低，枚举值可以隐式转换为整数，容易引发错误。</li>
+<h2 id="语法"><a href="#语法" class="headerlink" title="$() 语法"></a>$() 语法</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">output=$(<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>)<br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$output</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>以下是一些使用命令替换的示例：</p>
+<h3 id="示例-1：将命令输出赋值给变量"><a href="#示例-1：将命令输出赋值给变量" class="headerlink" title="示例 1：将命令输出赋值给变量"></a>示例 1：将命令输出赋值给变量</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">current_date=$(<span class="hljs-built_in">date</span>)<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Current date and time: <span class="hljs-variable">$current_date</span>&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="示例-2：将命令输出作为另一个命令的参数"><a href="#示例-2：将命令输出作为另一个命令的参数" class="headerlink" title="示例 2：将命令输出作为另一个命令的参数"></a>示例 2：将命令输出作为另一个命令的参数</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">files=$(<span class="hljs-built_in">ls</span>)<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Files in the current directory: <span class="hljs-variable">$files</span>&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="示例-3：嵌套命令替换"><a href="#示例-3：嵌套命令替换" class="headerlink" title="示例 3：嵌套命令替换"></a>示例 3：嵌套命令替换</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">nested_output=$(<span class="hljs-built_in">echo</span> $(<span class="hljs-built_in">date</span>))<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Nested command output: <span class="hljs-variable">$nested_output</span>&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>使用 $() 语法比反引号语法更推荐，因为它更易读且支持嵌套。</li>
+<li>命令替换会捕获命令的标准输出，但不会捕获标准错误输出。</li>
+<li>如果命令输出包含换行符，可以使用 <code>IFS</code>（内部字段分隔符）来处理多行输出。</li>
 </ul>
-<h3 id="2-强类型枚举（enum-class）"><a href="#2-强类型枚举（enum-class）" class="headerlink" title="2. 强类型枚举（enum class）"></a>2. 强类型枚举（enum class）</h3><p>C++11引入了强类型枚举（enum class），提供了更强的类型安全性和作用域控制。强类型枚举的枚举值不能隐式转换为整数类型，必须显式转换。</p>
-<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">Color</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    Color color = Color::Red;<br>    <span class="hljs-comment">// std::cout &lt;&lt; &quot;Color: &quot; &lt;&lt; color &lt;&lt; std::endl; // 错误：不能隐式转换为整数</span><br><br>    <span class="hljs-comment">// 显式转换为整数</span><br>    <span class="hljs-type">int</span> colorValue = <span class="hljs-built_in">static_cast</span>&lt;<span class="hljs-type">int</span>&gt;(color);<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Color value: &quot;</span> &lt;&lt; colorValue &lt;&lt; std::endl; <span class="hljs-comment">// 输出：Color value: 0</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><ul>
-<li><strong>显式转换</strong>：枚举值不能隐式转换为整数类型，必须显式转换。</li>
-<li><strong>作用域</strong>：枚举值在定义的作用域内是局部的，避免了命名冲突。</li>
-<li><strong>类型安全性</strong>：更高，枚举值不能隐式转换为整数，减少了错误的可能性。</li>
-</ul>
-<h3 id="3-枚举的定义和使用"><a href="#3-枚举的定义和使用" class="headerlink" title="3. 枚举的定义和使用"></a>3. 枚举的定义和使用</h3><h4 id="传统枚举的定义和使用"><a href="#传统枚举的定义和使用" class="headerlink" title="传统枚举的定义和使用"></a>传统枚举的定义和使用</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Color</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br>Color color = Red;<br></code></pre></td></tr></table></figure>
-
-<h4 id="强类型枚举的定义和使用"><a href="#强类型枚举的定义和使用" class="headerlink" title="强类型枚举的定义和使用"></a>强类型枚举的定义和使用</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">Color</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br>Color color = Color::Red;<br></code></pre></td></tr></table></figure>
-
-<h3 id="4-枚举的底层类型"><a href="#4-枚举的底层类型" class="headerlink" title="4. 枚举的底层类型"></a>4. 枚举的底层类型</h3><p>在C++11及其后续版本中，可以指定枚举的底层类型。默认情况下，底层类型是 <code>int</code>。</p>
-<h4 id="示例：指定底层类型"><a href="#示例：指定底层类型" class="headerlink" title="示例：指定底层类型"></a>示例：指定底层类型</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">Color</span> : <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    Color color = Color::Red;<br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> colorValue = <span class="hljs-built_in">static_cast</span>&lt;<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>&gt;(color);<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Color value: &quot;</span> &lt;&lt; colorValue &lt;&lt; std::endl; <span class="hljs-comment">// 输出：Color value: 0</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="5-枚举的比较"><a href="#5-枚举的比较" class="headerlink" title="5. 枚举的比较"></a>5. 枚举的比较</h3><p>枚举值可以进行比较操作，如相等性比较和关系比较。</p>
-<h4 id="示例：枚举的比较"><a href="#示例：枚举的比较" class="headerlink" title="示例：枚举的比较"></a>示例：枚举的比较</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">Color</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    Color color1 = Color::Red;<br>    Color color2 = Color::Green;<br><br>    <span class="hljs-keyword">if</span> (color1 == Color::Red) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;color1 is Red&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (color1 != color2) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;color1 is not equal to color2&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><p><strong>传统枚举（enum）</strong>：</p>
-<ul>
-<li><strong>隐式转换</strong>：枚举值可以隐式转换为整数类型。</li>
-<li><strong>作用域</strong>：枚举值在定义的作用域内是全局的，可能会导致命名冲突。</li>
-<li><strong>类型安全性</strong>：较低，枚举值可以隐式转换为整数，容易引发错误。</li>
-</ul>
-</li>
-<li><p><strong>强类型枚举（enum class）</strong>：</p>
-<ul>
-<li><strong>显式转换</strong>：枚举值不能隐式转换为整数类型，必须显式转换。</li>
-<li><strong>作用域</strong>：枚举值在定义的作用域内是局部的，避免了命名冲突。</li>
-<li><strong>类型安全性</strong>：更高，枚举值不能隐式转换为整数，减少了错误的可能性。</li>
-<li><strong>底层类型</strong>：可以指定枚举的底层类型。</li>
-</ul>
-</li>
-</ul>
+<h2 id="示例：处理多行输出"><a href="#示例：处理多行输出" class="headerlink" title="示例：处理多行输出"></a>示例：处理多行输出</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">output=$(<span class="hljs-built_in">ls</span>)<br>IFS=$<span class="hljs-string">&#x27;\n&#x27;</span> <span class="hljs-comment"># 设置内部字段分隔符为换行符</span><br><span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> <span class="hljs-variable">$output</span>; <span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;File: <span class="hljs-variable">$file</span>&quot;</span><br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -344,7 +322,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/C/" class="category-chain-item">C++</a>
+  <a href="/categories/Shell/" class="category-chain-item">Shell</a>
   
   
 
@@ -359,9 +337,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/C/" class="print-no-link">#C++</a>
+        <a href="/tags/Shell/" class="print-no-link">#Shell</a>
       
-        <a href="/tags/%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/" class="print-no-link">#枚举类型</a>
+        <a href="/tags/%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2/" class="print-no-link">#命令替换</a>
       
     </div>
   
@@ -373,8 +351,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>C++ 枚举类型</div>
-      <div>https://linhanmic.github.io/2024/09/13/C++ 枚举/</div>
+      <div>Shell 命令替换</div>
+      <div>https://linhanmic.github.io/2024/09/14/Shell命令替换/</div>
     </div>
     <div class="license-meta">
       
@@ -386,13 +364,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月13日</div>
+          <div>2024年9月14日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月13日</div>
+          <div>2024年9月14日</div>
         </div>
       
       
@@ -423,18 +401,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/14/CMake%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="使用 cmake 进行文件配置">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">使用 cmake 进行文件配置</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/12/CMake%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" title="CMake 常见路径变量和命令总结">
-                        <span class="hidden-mobile">CMake 常见路径变量和命令总结</span>
+                      <a href="/2024/09/14/%E5%9C%A8%20main%20%E5%87%BD%E6%95%B0%E4%B9%8B%E5%89%8D%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81/" title="在 main 函数之前执行一段代码">
+                        <span class="hidden-mobile">在 main 函数之前执行一段代码</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -457,7 +429,7 @@
         var options = Object.assign(
           {"clientID":"Ov23liobGiyahRXFQLc1","clientSecret":"c5e0ba5633a0f11d1c195edea442a7c0a3350350","repo":"HexoBlogGitalk","owner":"Linhanmic","admin":["Linhanmic"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"first","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '4082a3c1edb202f30d311ac13cb10a9c'
+            id: 'e091c51841534234dec2b1d63f4442ff'
           }
         )
         var gitalk = new Gitalk(options);

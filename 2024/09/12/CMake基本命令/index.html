@@ -19,23 +19,22 @@
   <meta name="author" content="Linhanmic">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在C++中，枚举（enum）是一种用户定义的类型，用于表示一组命名的常量。C++11引入了强类型枚举（enum class），提供了更强的类型安全性和作用域控制。">
+    <meta name="description" content="CMake 常见路径变量和命令总结。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++ 枚举类型">
-<meta property="og:url" content="https://linhanmic.github.io/2024/09/13/C++%20%E6%9E%9A%E4%B8%BE/index.html">
+<meta property="og:title" content="CMake 常见路径变量和命令总结">
+<meta property="og:url" content="https://linhanmic.github.io/2024/09/12/CMake%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="Linhanmic">
-<meta property="og:description" content="在C++中，枚举（enum）是一种用户定义的类型，用于表示一组命名的常量。C++11引入了强类型枚举（enum class），提供了更强的类型安全性和作用域控制。">
+<meta property="og:description" content="CMake 常见路径变量和命令总结。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-13T07:19:22.000Z">
-<meta property="article:modified_time" content="2024-09-13T07:35:57.007Z">
+<meta property="article:published_time" content="2024-09-12T08:42:46.000Z">
+<meta property="article:modified_time" content="2024-09-14T15:36:21.486Z">
 <meta property="article:author" content="Linhanmic">
-<meta property="article:tag" content="C++">
-<meta property="article:tag" content="枚举类型">
+<meta property="article:tag" content="CMake">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>C++ 枚举类型 - Linhanmic</title>
+  <title>CMake 常见路径变量和命令总结 - Linhanmic</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="C++ 枚举类型"></span>
+            <span id="subtitle" data-typed-text="CMake 常见路径变量和命令总结"></span>
           
         </div>
 
@@ -217,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-13 15:19" pubdate>
-          2024年9月13日 下午
+        <time datetime="2024-09-12 16:42" pubdate>
+          2024年9月12日 下午
         </time>
       </span>
     
@@ -229,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          894 字
+          314 字
         
       </span>
     
@@ -240,7 +239,7 @@
         
         
         
-          8 分钟
+          3 分钟
         
       </span>
     
@@ -277,55 +276,36 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">C++ 枚举类型</h1>
+            <h1 id="seo-header">CMake 常见路径变量和命令总结</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="C-枚举类型"><a href="#C-枚举类型" class="headerlink" title="C++ 枚举类型"></a>C++ 枚举类型</h1><p>在C++中，枚举（enum）是一种用户定义的类型，用于表示一组命名的常量。C++11引入了强类型枚举（enum class），提供了更强的类型安全性和作用域控制。以下是对传统枚举（enum）和强类型枚举（enum class）的详细总结。</p>
-<h3 id="1-传统枚举（enum）"><a href="#1-传统枚举（enum）" class="headerlink" title="1. 传统枚举（enum）"></a>1. 传统枚举（enum）</h3><p>传统枚举是C++中最早引入的一种枚举类型，定义在全局作用域或类作用域中。传统枚举的枚举值是整型常量，可以隐式转换为整数类型。</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Color</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    Color color = Red;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Color: &quot;</span> &lt;&lt; color &lt;&lt; std::endl; <span class="hljs-comment">// 输出：Color: 0</span><br><br>    <span class="hljs-comment">// 隐式转换为整数</span><br>    <span class="hljs-type">int</span> colorValue = color;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Color value: &quot;</span> &lt;&lt; colorValue &lt;&lt; std::endl; <span class="hljs-comment">// 输出：Color value: 0</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+                <h2 id="CMake-常见路径变量和命令总结"><a href="#CMake-常见路径变量和命令总结" class="headerlink" title="CMake 常见路径变量和命令总结"></a>CMake 常见路径变量和命令总结</h2><h3 id="常用路径变量"><a href="#常用路径变量" class="headerlink" title="常用路径变量"></a>常用路径变量</h3><ol>
+<li>**<code>CMAKE_SOURCE_DIR</code>**：项目的根目录，即包含顶层 <a href="command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fe%3A%2FWorkSpace%2Fmuduo%2FCMakeLists.txt%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D" title="e:\WorkSpace\muduo\CMakeLists.txt"><code>CMakeLists.txt</code></a> 文件的目录。</li>
+<li>**<code>CMAKE_BINARY_DIR</code>**：构建目录，即运行 <a href="command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fe%3A%2FWorkSpace%2Fmuduo%2Fcmake%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D" title="e:\WorkSpace\muduo\cmake"><code>cmake</code></a> 命令的目录。</li>
+<li>**<code>PROJECT_SOURCE_DIR</code>**：当前项目的源代码目录。</li>
+<li>**<code>PROJECT_BINARY_DIR</code>**：当前项目的构建目录。</li>
+<li>**<code>CMAKE_CURRENT_SOURCE_DIR</code>**：当前处理的 <a href="command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fe%3A%2FWorkSpace%2Fmuduo%2FCMakeLists.txt%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D" title="e:\WorkSpace\muduo\CMakeLists.txt"><code>CMakeLists.txt</code></a> 文件所在的目录。</li>
+<li>**<code>CMAKE_CURRENT_BINARY_DIR</code>**：当前处理的 <a href="command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fe%3A%2FWorkSpace%2Fmuduo%2FCMakeLists.txt%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D" title="e:\WorkSpace\muduo\CMakeLists.txt"><code>CMakeLists.txt</code></a> 文件的构建目录。</li>
+<li>**<code>CMAKE_INSTALL_PREFIX</code>**：安装路径前缀，默认是 <code>/usr/local</code>。</li>
+</ol>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ol>
+<li>**<code>include_directories</code>**：添加头文件搜索路径。</li>
+<li>**<code>link_directories</code>**：添加库文件搜索路径。</li>
+<li>**<code>add_executable</code>**：添加可执行文件。</li>
+<li>**<code>add_library</code>**：添加库文件。</li>
+<li>**<code>target_include_directories</code>**：为目标添加头文件搜索路径。</li>
+<li>**<code>target_link_libraries</code>**：为目标添加链接库。</li>
+</ol>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>假设你的项目结构如下：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-regexp">/path/</span>to<span class="hljs-regexp">/your/</span><span class="hljs-keyword">project</span><br>├── CMakeLists.txt<br>├── <span class="hljs-keyword">include</span><br>│   └── noncopyable.h<br>└── test<br>    └── test_noncopyable.cpp<br></code></pre></td></tr></table></figure>
 
-<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
-<li><strong>隐式转换</strong>：枚举值可以隐式转换为整数类型。</li>
-<li><strong>作用域</strong>：枚举值在定义的作用域内是全局的，可能会导致命名冲突。</li>
-<li><strong>类型安全性</strong>：较低，枚举值可以隐式转换为整数，容易引发错误。</li>
-</ul>
-<h3 id="2-强类型枚举（enum-class）"><a href="#2-强类型枚举（enum-class）" class="headerlink" title="2. 强类型枚举（enum class）"></a>2. 强类型枚举（enum class）</h3><p>C++11引入了强类型枚举（enum class），提供了更强的类型安全性和作用域控制。强类型枚举的枚举值不能隐式转换为整数类型，必须显式转换。</p>
-<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">Color</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    Color color = Color::Red;<br>    <span class="hljs-comment">// std::cout &lt;&lt; &quot;Color: &quot; &lt;&lt; color &lt;&lt; std::endl; // 错误：不能隐式转换为整数</span><br><br>    <span class="hljs-comment">// 显式转换为整数</span><br>    <span class="hljs-type">int</span> colorValue = <span class="hljs-built_in">static_cast</span>&lt;<span class="hljs-type">int</span>&gt;(color);<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Color value: &quot;</span> &lt;&lt; colorValue &lt;&lt; std::endl; <span class="hljs-comment">// 输出：Color value: 0</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可以在 <a href="command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fe%3A%2FWorkSpace%2Fmuduo%2FCMakeLists.txt%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D" title="e:\WorkSpace\muduo\CMakeLists.txt"><code>CMakeLists.txt</code></a> 文件中使用这些路径变量和命令：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.10</span>)<br><span class="hljs-keyword">project</span>(MuduoBase)<br><br><span class="hljs-comment"># 设置 C++ 标准</span><br><span class="hljs-keyword">set</span>(CMAKE_CXX_STANDARD <span class="hljs-number">11</span>)<br><span class="hljs-keyword">set</span>(CMAKE_CXX_STANDARD_REQUIRED <span class="hljs-keyword">True</span>)<br><br><span class="hljs-comment"># 添加头文件搜索路径</span><br><span class="hljs-keyword">include_directories</span>(<span class="hljs-variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/<span class="hljs-keyword">include</span>)<br><br><span class="hljs-comment"># 添加 INTERFACE 库</span><br><span class="hljs-keyword">add_library</span>(muduo_base INTERFACE)<br><span class="hljs-keyword">target_include_directories</span>(muduo_base INTERFACE <span class="hljs-variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/<span class="hljs-keyword">include</span>)<br><br><span class="hljs-comment"># 启用测试</span><br><span class="hljs-keyword">enable_testing</span>()<br><br><span class="hljs-comment"># 添加测试可执行文件</span><br><span class="hljs-keyword">add_executable</span>(test_noncopyable <span class="hljs-keyword">test</span>/test_noncopyable.cpp)<br><br><span class="hljs-comment"># 链接 INTERFACE 库</span><br><span class="hljs-keyword">target_link_libraries</span>(test_noncopyable muduo_base)<br><br><span class="hljs-comment"># 添加测试</span><br><span class="hljs-keyword">add_test</span>(NAME TestNoncopyable <span class="hljs-keyword">COMMAND</span> test_noncopyable)<br></code></pre></td></tr></table></figure>
 
-<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><ul>
-<li><strong>显式转换</strong>：枚举值不能隐式转换为整数类型，必须显式转换。</li>
-<li><strong>作用域</strong>：枚举值在定义的作用域内是局部的，避免了命名冲突。</li>
-<li><strong>类型安全性</strong>：更高，枚举值不能隐式转换为整数，减少了错误的可能性。</li>
-</ul>
-<h3 id="3-枚举的定义和使用"><a href="#3-枚举的定义和使用" class="headerlink" title="3. 枚举的定义和使用"></a>3. 枚举的定义和使用</h3><h4 id="传统枚举的定义和使用"><a href="#传统枚举的定义和使用" class="headerlink" title="传统枚举的定义和使用"></a>传统枚举的定义和使用</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Color</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br>Color color = Red;<br></code></pre></td></tr></table></figure>
-
-<h4 id="强类型枚举的定义和使用"><a href="#强类型枚举的定义和使用" class="headerlink" title="强类型枚举的定义和使用"></a>强类型枚举的定义和使用</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">Color</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br>Color color = Color::Red;<br></code></pre></td></tr></table></figure>
-
-<h3 id="4-枚举的底层类型"><a href="#4-枚举的底层类型" class="headerlink" title="4. 枚举的底层类型"></a>4. 枚举的底层类型</h3><p>在C++11及其后续版本中，可以指定枚举的底层类型。默认情况下，底层类型是 <code>int</code>。</p>
-<h4 id="示例：指定底层类型"><a href="#示例：指定底层类型" class="headerlink" title="示例：指定底层类型"></a>示例：指定底层类型</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">Color</span> : <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    Color color = Color::Red;<br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> colorValue = <span class="hljs-built_in">static_cast</span>&lt;<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>&gt;(color);<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Color value: &quot;</span> &lt;&lt; colorValue &lt;&lt; std::endl; <span class="hljs-comment">// 输出：Color value: 0</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="5-枚举的比较"><a href="#5-枚举的比较" class="headerlink" title="5. 枚举的比较"></a>5. 枚举的比较</h3><p>枚举值可以进行比较操作，如相等性比较和关系比较。</p>
-<h4 id="示例：枚举的比较"><a href="#示例：枚举的比较" class="headerlink" title="示例：枚举的比较"></a>示例：枚举的比较</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">Color</span> &#123;<br>    Red,<br>    Green,<br>    Blue<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    Color color1 = Color::Red;<br>    Color color2 = Color::Green;<br><br>    <span class="hljs-keyword">if</span> (color1 == Color::Red) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;color1 is Red&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (color1 != color2) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;color1 is not equal to color2&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><p><strong>传统枚举（enum）</strong>：</p>
-<ul>
-<li><strong>隐式转换</strong>：枚举值可以隐式转换为整数类型。</li>
-<li><strong>作用域</strong>：枚举值在定义的作用域内是全局的，可能会导致命名冲突。</li>
-<li><strong>类型安全性</strong>：较低，枚举值可以隐式转换为整数，容易引发错误。</li>
-</ul>
-</li>
-<li><p><strong>强类型枚举（enum class）</strong>：</p>
-<ul>
-<li><strong>显式转换</strong>：枚举值不能隐式转换为整数类型，必须显式转换。</li>
-<li><strong>作用域</strong>：枚举值在定义的作用域内是局部的，避免了命名冲突。</li>
-<li><strong>类型安全性</strong>：更高，枚举值不能隐式转换为整数，减少了错误的可能性。</li>
-<li><strong>底层类型</strong>：可以指定枚举的底层类型。</li>
-</ul>
-</li>
-</ul>
+<h3 id="生成和运行测试"><a href="#生成和运行测试" class="headerlink" title="生成和运行测试"></a>生成和运行测试</h3><p>在项目根目录中运行以下命令生成和运行测试：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> build<br><span class="hljs-built_in">cd</span> build<br>cmake ..<br>make<br>ctest<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -344,7 +324,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/C/" class="category-chain-item">C++</a>
+  <a href="/categories/CMake/" class="category-chain-item">CMake</a>
   
   
 
@@ -359,9 +339,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/C/" class="print-no-link">#C++</a>
-      
-        <a href="/tags/%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/" class="print-no-link">#枚举类型</a>
+        <a href="/tags/CMake/" class="print-no-link">#CMake</a>
       
     </div>
   
@@ -373,8 +351,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>C++ 枚举类型</div>
-      <div>https://linhanmic.github.io/2024/09/13/C++ 枚举/</div>
+      <div>CMake 常见路径变量和命令总结</div>
+      <div>https://linhanmic.github.io/2024/09/12/CMake基本命令/</div>
     </div>
     <div class="license-meta">
       
@@ -386,13 +364,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月13日</div>
+          <div>2024年9月12日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月13日</div>
+          <div>2024年9月14日</div>
         </div>
       
       
@@ -423,9 +401,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/14/CMake%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="使用 cmake 进行文件配置">
+                      <a href="/2024/09/13/C++%20%E6%9E%9A%E4%B8%BE/" title="C++ 枚举类型">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">使用 cmake 进行文件配置</span>
+                        <span class="hidden-mobile">C++ 枚举类型</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -433,8 +411,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/12/CMake%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" title="CMake 常见路径变量和命令总结">
-                        <span class="hidden-mobile">CMake 常见路径变量和命令总结</span>
+                      <a href="/2024/09/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" title="设计模式之设计原则">
+                        <span class="hidden-mobile">设计模式之设计原则</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -457,7 +435,7 @@
         var options = Object.assign(
           {"clientID":"Ov23liobGiyahRXFQLc1","clientSecret":"c5e0ba5633a0f11d1c195edea442a7c0a3350350","repo":"HexoBlogGitalk","owner":"Linhanmic","admin":["Linhanmic"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"first","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '4082a3c1edb202f30d311ac13cb10a9c'
+            id: '309bbd23054e295bcf393205e5c8d0eb'
           }
         )
         var gitalk = new Gitalk(options);
