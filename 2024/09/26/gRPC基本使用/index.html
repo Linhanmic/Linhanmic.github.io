@@ -1,0 +1,713 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start --><link rel="stylesheet" href="/css/my-avatar.css"><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#9e9a92">
+  <meta name="author" content="Linhanmic">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="gRPC 是一个高性能、开源且通用的远程过程调用 (RPC) 框架，它能够让你从客户端轻松地调用另一台机器上的服务端方法，就像调用本地对象一样，同时为你管理了很多细节，如线程管理和网络传输等。gRPC 支持多种语言，并且默认使用 Protocol Buffers 作为接口定义语言（IDL）来定义服务接口以及消息格式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gRPC 基本使用">
+<meta property="og:url" content="https://linhanmic.github.io/2024/09/26/gRPC%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Linhanmic">
+<meta property="og:description" content="gRPC 是一个高性能、开源且通用的远程过程调用 (RPC) 框架，它能够让你从客户端轻松地调用另一台机器上的服务端方法，就像调用本地对象一样，同时为你管理了很多细节，如线程管理和网络传输等。gRPC 支持多种语言，并且默认使用 Protocol Buffers 作为接口定义语言（IDL）来定义服务接口以及消息格式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-26T05:54:51.000Z">
+<meta property="article:modified_time" content="2024-09-26T06:36:06.298Z">
+<meta property="article:author" content="Linhanmic">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="gRPC">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>gRPC 基本使用 - Linhanmic</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"linhanmic.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Linhanmic</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bamboo.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="gRPC 基本使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Linhanmic
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-26 13:54" pubdate>
+          2024年9月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">gRPC 基本使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="gRPC-基本使用"><a href="#gRPC-基本使用" class="headerlink" title="gRPC 基本使用"></a>gRPC 基本使用</h1><p> gRPC 是一个高性能、开源且通用的远程过程调用 (RPC) 框架，它能够让你从客户端轻松地调用另一台机器上的服务端方法，就像调用本地对象一样，同时为你管理了很多细节，如线程管理和网络传输等。gRPC 支持多种语言，并且默认使用 Protocol Buffers 作为接口定义语言（IDL）来定义服务接口以及消息格式。</p>
+<p>下面是 gRPC 的基本使用步骤：</p>
+<h2 id="1、定义服务接口"><a href="#1、定义服务接口" class="headerlink" title="1、定义服务接口"></a>1、定义服务接口</h2><p>首先使用 protobuf 语言定义服务接口，定义在以 <code>.proto</code> 结尾的文件中，其中包含了服务的名称、服务的方法以及每个方法的消息格式。</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs protobuf"><span class="hljs-comment">// 指定使用的 Protocol Buffers 版本为 proto3。</span><br>syntax = <span class="hljs-string">&quot;proto3&quot;</span>;<br><br><span class="hljs-comment">// 定义了一个名为 `example` 的包。所有的消息和服务都属于这个包。相当于C++的命名空间</span><br><span class="hljs-keyword">package</span> example;<br><br><span class="hljs-comment">// 定义了一个名为 `Echo` 的服务。</span><br><span class="hljs-comment">// 服务定义了可以被远程调用的方法。</span><br><span class="hljs-keyword">service </span><span class="hljs-title class_">Echo</span> &#123;<br>    <span class="hljs-comment">// `SayHello` 是一个远程过程调用方法。</span><br>    <span class="hljs-comment">// 它接收一个 `HelloRequest` 类型的消息作为参数，</span><br>    <span class="hljs-comment">// 并返回一个 `HelloResponse` 类型的消息。</span><br>    <span class="hljs-function"><span class="hljs-keyword">rpc</span> SayHello (HelloRequest) <span class="hljs-keyword">returns</span> (HelloResponse)</span>;<br>&#125;<br><br><span class="hljs-comment">// 定义了一个名为 `HelloRequest` 的消息类型。</span><br><span class="hljs-comment">// 这个消息有一个字段 `greeting`，类型为 `string`。</span><br><span class="hljs-comment">// 字段的序号为 1，这意味着在序列化过程中，它会被编码为第一个字段。</span><br><span class="hljs-keyword">message </span><span class="hljs-title class_">HelloRequest</span> &#123;<br>    <span class="hljs-type">string</span> greeting = <span class="hljs-number">1</span>;  <span class="hljs-comment">// 请求消息体中的字符串字段</span><br>&#125;<br><br><span class="hljs-comment">// 定义了一个名为 `HelloResponse` 的消息类型。</span><br><span class="hljs-comment">// 这个消息有一个字段 `reply`，类型为 `string`。</span><br><span class="hljs-comment">// 字段的序号为 1，这意味着在序列化过程中，它会被编码为第一个字段。</span><br><span class="hljs-keyword">message </span><span class="hljs-title class_">HelloResponse</span> &#123;<br>    <span class="hljs-type">string</span> reply = <span class="hljs-number">1</span>;  <span class="hljs-comment">// 响应消息体中的字符串字段</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、生成代码"><a href="#2、生成代码" class="headerlink" title="2、生成代码"></a>2、生成代码</h2><p>使用 Protocol Buffers 编译器 (<code>protoc</code>) 和相应语言对应的 gRPC 插件生成客户端和服务器端的存根代码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">// 生成 c++ 消息类: echo.pb.h echo.pb.cc<br>protoc -I=. --cpp_out=. echo.proto<br>// 生成 gRPC 存根代码: echo.grpc.pb.h ehco.grpc.pb.cc<br>protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`<span class="hljs-built_in">which</span> grpc_cpp_plugin` echo.proto<br></code></pre></td></tr></table></figure>
+
+<p>protoc 命令解析</p>
+<p><code>-I</code>：指定 <code>.proto</code> 文件的搜索路径</p>
+<p><code>--cpp_out</code>：指定生成 C++ 代码的输出路径</p>
+<p><code>--grpc_out</code>：指定生成 gRPC 存根代码的输出路径</p>
+<p><code>--plugin=proto-gen-grpc=&#39;which grpc_cpp_plugin&#39;</code>：指定要使用的插件</p>
+<h2 id="3、实现服务"><a href="#3、实现服务" class="headerlink" title="3、实现服务"></a>3、实现服务</h2><p>继承自动生成的服务类并实现其中的虚函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">EchoServiceImpl</span> <span class="hljs-keyword">final</span> : <span class="hljs-keyword">public</span> example::Echo::Service &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">grpc::Status <span class="hljs-title">SayHello</span><span class="hljs-params">(grpc::ServerContext* context, <span class="hljs-type">const</span> example::HelloRequest* request,</span></span><br><span class="hljs-params"><span class="hljs-function">                          example::HelloResponse* reply)</span> <span class="hljs-keyword">override</span> </span>&#123;<br>        <span class="hljs-function">std::string <span class="hljs-title">prefix</span><span class="hljs-params">(<span class="hljs-string">&quot;Hello &quot;</span>)</span></span>;<br>        reply-&gt;<span class="hljs-built_in">set_reply</span>(prefix + request-&gt;<span class="hljs-built_in">greeting</span>());<br>        <span class="hljs-keyword">return</span> grpc::Status::OK;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="4、创建服务器"><a href="#4、创建服务器" class="headerlink" title="4、创建服务器"></a>4、创建服务器</h2><p>创建一个 gRPC 服务实例，并将实现的服务注册到服务器上。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span><br><br><span class="hljs-comment">// 导入 gRPC 相关头文件</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;grpcpp/grpcpp.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;example.pb.h&quot;</span>  <span class="hljs-comment">// 自动生成的消息头文件</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;example.grpc.pb.h&quot;</span>  <span class="hljs-comment">// 自动生成的服务头文件</span></span><br><br><span class="hljs-comment">// 主函数</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>** argv)</span> </span>&#123;<br>    <span class="hljs-comment">// 服务器监听地址</span><br>    <span class="hljs-function">std::string <span class="hljs-title">server_address</span><span class="hljs-params">(<span class="hljs-string">&quot;0.0.0.0:50051&quot;</span>)</span></span>;<br><br>    <span class="hljs-comment">// 创建服务实例</span><br>    EchoServiceImpl service;<br><br>    <span class="hljs-comment">// 创建 ServerBuilder 对象</span><br>    grpc::ServerBuilder builder;<br><br>    <span class="hljs-comment">// 添加监听端口</span><br>    <span class="hljs-comment">// 使用不安全的凭证（仅适用于开发环境）</span><br>    builder.<span class="hljs-built_in">AddListeningPort</span>(server_address, grpc::<span class="hljs-built_in">InsecureServerCredentials</span>());<br><br>    <span class="hljs-comment">// 注册服务</span><br>    <span class="hljs-comment">// 将服务实例注册到 ServerBuilder 中</span><br>    builder.<span class="hljs-built_in">RegisterService</span>(&amp;service);<br><br>    <span class="hljs-comment">// 构建并启动服务器</span><br>    <span class="hljs-comment">// BuildAndStart() 方法返回一个 unique_ptr 指向 Server 对象</span><br>    <span class="hljs-function">std::unique_ptr&lt;grpc::Server&gt; <span class="hljs-title">server</span><span class="hljs-params">(builder.BuildAndStart())</span></span>;<br><br>    <span class="hljs-comment">// 输出服务器监听地址</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Server listening on &quot;</span> &lt;&lt; server_address &lt;&lt; std::endl;<br><br>    <span class="hljs-comment">// 等待服务器关闭</span><br>    <span class="hljs-comment">// 这里阻塞主线程，等待服务器关闭</span><br>    server-&gt;<span class="hljs-built_in">Wait</span>();<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="5、创建客户端"><a href="#5、创建客户端" class="headerlink" title="5、创建客户端"></a>5、创建客户端</h2><p>创建一个客户端实例连接到 gRPC 服务器，并调用服务的方法。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span><br><br><span class="hljs-comment">// 导入 gRPC 相关头文件</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;grpcpp/grpcpp.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;example.pb.h&quot;</span>  <span class="hljs-comment">// 自动生成的消息头文件</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;example.grpc.pb.h&quot;</span>  <span class="hljs-comment">// 自动生成的服务头文件</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// 创建一个 gRPC 通道</span><br>    <span class="hljs-comment">// 通道用于与远程服务器通信</span><br>    std::shared_ptr&lt;grpc::Channel&gt; channel = grpc::<span class="hljs-built_in">CreateChannel</span>(<br>        <span class="hljs-string">&quot;localhost:50051&quot;</span>, grpc::<span class="hljs-built_in">InsecureChannelCredentials</span>());<br><br>    <span class="hljs-comment">// 创建服务存根</span><br>    <span class="hljs-comment">// 存根用于发起 RPC 调用</span><br>    std::unique_ptr&lt;example::Echo::Stub&gt; stub = example::Echo::<span class="hljs-built_in">NewStub</span>(channel);<br><br>    <span class="hljs-comment">// 创建请求消息</span><br>    example::HelloRequest request;<br>    request.<span class="hljs-built_in">set_greeting</span>(<span class="hljs-string">&quot;world&quot;</span>);<br><br>    <span class="hljs-comment">// 创建响应消息</span><br>    example::HelloResponse reply;<br><br>    <span class="hljs-comment">// 创建客户端上下文</span><br>    <span class="hljs-comment">// 用于传递额外的信息，如元数据、截止时间等</span><br>    grpc::ClientContext context;<br><br>    <span class="hljs-comment">// 发起 RPC 调用</span><br>    <span class="hljs-comment">// SayHello 方法接收请求消息并返回响应消息</span><br>    grpc::Status status = stub-&gt;<span class="hljs-built_in">SayHello</span>(&amp;context, request, &amp;reply);<br><br>    <span class="hljs-comment">// 检查 RPC 调用的状态</span><br>    <span class="hljs-keyword">if</span> (status.<span class="hljs-built_in">ok</span>()) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Greeter received: &quot;</span> &lt;&lt; reply.<span class="hljs-built_in">reply</span>() &lt;&lt; std::endl;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Greeter RPC failed: &quot;</span> &lt;&lt; status.<span class="hljs-built_in">error_code</span>() &lt;&lt; <span class="hljs-string">&quot;: &quot;</span> &lt;&lt; status.<span class="hljs-built_in">error_message</span>() &lt;&lt; std::endl;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/gRPC/" class="category-chain-item">gRPC</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/gRPC/" class="print-no-link">#gRPC</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>gRPC 基本使用</div>
+      <div>https://linhanmic.github.io/2024/09/26/gRPC基本使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Linhanmic</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年9月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/26/gRPC%E7%8A%B6%E6%80%81%E7%A0%81%E6%9E%9A%E4%B8%BE%E6%96%87%E6%A1%A3/" title="gRPC 状态码枚举文档">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">gRPC 状态码枚举文档</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/24/%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E7%9A%84%E8%AF%AD%E6%B3%95%E5%8F%AF%E8%83%BD%E4%BC%9A%E4%BA%A7%E7%94%9F%E6%AD%A7%E4%B9%89/" title="对象初始化和函数声明的语法可能会产生歧义">
+                        <span class="hidden-mobile">对象初始化和函数声明的语法可能会产生歧义</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liobGiyahRXFQLc1","clientSecret":"c5e0ba5633a0f11d1c195edea442a7c0a3350350","repo":"HexoBlogGitalk","owner":"Linhanmic","admin":["Linhanmic"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"first","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '63c31956afa3c394898f6799bb58047c'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

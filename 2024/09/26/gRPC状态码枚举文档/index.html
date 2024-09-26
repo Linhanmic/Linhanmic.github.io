@@ -19,23 +19,22 @@
   <meta name="author" content="Linhanmic">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在C++中，有时对象初始化和函数声明的语法可能会产生歧义，导致编译器无法正确解析代码。这种情况被称为“最令人困惑的解析”（Most Vexing Parse）。为了避免这种歧义，可以使用额外的括号或其他语法技巧来明确表达意图。">
+    <meta name="description" content="gRPC 框架定义了一系列的状态码，用于表示远程过程调用（RPC）的结果。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对象初始化和函数声明的语法可能会产生歧义">
-<meta property="og:url" content="https://linhanmic.github.io/2024/09/24/%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E7%9A%84%E8%AF%AD%E6%B3%95%E5%8F%AF%E8%83%BD%E4%BC%9A%E4%BA%A7%E7%94%9F%E6%AD%A7%E4%B9%89/index.html">
+<meta property="og:title" content="gRPC 状态码枚举文档">
+<meta property="og:url" content="https://linhanmic.github.io/2024/09/26/gRPC%E7%8A%B6%E6%80%81%E7%A0%81%E6%9E%9A%E4%B8%BE%E6%96%87%E6%A1%A3/index.html">
 <meta property="og:site_name" content="Linhanmic">
-<meta property="og:description" content="在C++中，有时对象初始化和函数声明的语法可能会产生歧义，导致编译器无法正确解析代码。这种情况被称为“最令人困惑的解析”（Most Vexing Parse）。为了避免这种歧义，可以使用额外的括号或其他语法技巧来明确表达意图。">
+<meta property="og:description" content="gRPC 框架定义了一系列的状态码，用于表示远程过程调用（RPC）的结果。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-24T15:25:06.000Z">
-<meta property="article:modified_time" content="2024-09-24T15:26:25.419Z">
+<meta property="article:published_time" content="2024-09-26T06:39:10.000Z">
+<meta property="article:modified_time" content="2024-09-26T06:40:05.169Z">
 <meta property="article:author" content="Linhanmic">
-<meta property="article:tag" content="C++">
-<meta property="article:tag" content="初始化">
+<meta property="article:tag" content="gRPC">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>对象初始化和函数声明的语法可能会产生歧义 - Linhanmic</title>
+  <title>gRPC 状态码枚举文档 - Linhanmic</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="对象初始化和函数声明的语法可能会产生歧义"></span>
+            <span id="subtitle" data-typed-text="gRPC 状态码枚举文档"></span>
           
         </div>
 
@@ -217,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-24 23:25" pubdate>
-          2024年9月24日 晚上
+        <time datetime="2024-09-26 14:39" pubdate>
+          2024年9月26日 下午
         </time>
       </span>
     
@@ -229,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          626 字
+          1.5k 字
         
       </span>
     
@@ -240,7 +239,7 @@
         
         
         
-          6 分钟
+          13 分钟
         
       </span>
     
@@ -277,31 +276,102 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">对象初始化和函数声明的语法可能会产生歧义</h1>
+            <h1 id="seo-header">gRPC 状态码枚举文档</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="对象初始化和函数声明的语法可能会产生歧义"><a href="#对象初始化和函数声明的语法可能会产生歧义" class="headerlink" title="对象初始化和函数声明的语法可能会产生歧义"></a><strong>对象初始化和函数声明的语法可能会产生歧义</strong></h1><p>在C++中，有时对象初始化和函数声明的语法可能会产生歧义，导致编译器无法正确解析代码。这种情况被称为“最令人困惑的解析”（Most Vexing Parse）。为了避免这种歧义，可以使用额外的括号或其他语法技巧来明确表达意图。</p>
-<h3 id="示例：最令人困惑的解析"><a href="#示例：最令人困惑的解析" class="headerlink" title="示例：最令人困惑的解析"></a>示例：最令人困惑的解析</h3><p>假设我们有以下代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">numbers</span><span class="hljs-params">(std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;(iss), std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;())</span></span>;<br></code></pre></td></tr></table></figure>
-
-<p>编译器可能会将其解释为一个函数声明，而不是对象的初始化。为了避免这种情况，我们可以使用额外的括号来明确表示这是一个对象的初始化：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">numbers</span><span class="hljs-params">((std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;(iss)), std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;())</span></span>;<br></code></pre></td></tr></table></figure>
-
-<h3 id="详细解释"><a href="#详细解释" class="headerlink" title="详细解释"></a>详细解释</h3><ul>
-<li><code>std::istream_iterator&lt;int&gt;(iss)</code>：创建一个从输入流 <code>iss</code> 中读取整数的迭代器。</li>
-<li><code>std::istream_iterator&lt;int&gt;()</code>：创建一个默认构造的流迭代器，表示流的结束。</li>
-<li><code>std::vector&lt;int&gt;</code> 的构造函数接受两个迭代器，表示要复制的范围。</li>
+                <h3 id="gRPC-状态码枚举文档"><a href="#gRPC-状态码枚举文档" class="headerlink" title="gRPC 状态码枚举文档"></a>gRPC 状态码枚举文档</h3><p>gRPC 框架定义了一系列的状态码，用于表示远程过程调用（RPC）的结果。以下是 <code>grpc</code> 命名空间中 <code>StatusCode</code> 枚举的详细说明：</p>
+<h4 id="OK-0"><a href="#OK-0" class="headerlink" title="OK (0)"></a>OK (0)</h4><ul>
+<li><strong>操作成功，没有错误。</strong></li>
+<li><strong>常见使用场景</strong>：远程过程调用成功完成。</li>
+<li><strong>错误处理建议</strong>：无需采取任何错误处理措施，正常流程。</li>
 </ul>
-<h3 id="其他避免歧义的方法"><a href="#其他避免歧义的方法" class="headerlink" title="其他避免歧义的方法"></a>其他避免歧义的方法</h3><p>除了使用额外的括号，还可以使用其他方法来避免歧义，例如使用C++11引入的列表初始化语法：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::vector&lt;<span class="hljs-type">int</span>&gt; numbers&#123;std::<span class="hljs-built_in">istream_iterator</span>&lt;<span class="hljs-type">int</span>&gt;(iss), std::<span class="hljs-built_in">istream_iterator</span>&lt;<span class="hljs-type">int</span>&gt;()&#125;;<br></code></pre></td></tr></table></figure>
-
-<p>这种语法明确表示这是一个对象的初始化，而不是函数声明。</p>
-<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><p>以下是使用额外括号和列表初始化语法的完整示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sstream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iterator&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    std::string str&#123;<span class="hljs-string">&quot;1 2 3 4 5&quot;</span>&#125;;<br>    <span class="hljs-function">std::istringstream <span class="hljs-title">iss</span><span class="hljs-params">(str)</span></span>;<br><br>    <span class="hljs-comment">// 使用额外括号避免歧义</span><br>    <span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">numbers1</span><span class="hljs-params">((std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;(iss)), std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;())</span></span>;<br><br>    <span class="hljs-comment">// 使用列表初始化语法避免歧义</span><br>    <span class="hljs-function">std::istringstream <span class="hljs-title">iss2</span><span class="hljs-params">(str)</span></span>; <span class="hljs-comment">// 重新初始化流，因为上面的流已经被读取完毕</span><br>    std::vector&lt;<span class="hljs-type">int</span>&gt; numbers2&#123;std::<span class="hljs-built_in">istream_iterator</span>&lt;<span class="hljs-type">int</span>&gt;(iss2), std::<span class="hljs-built_in">istream_iterator</span>&lt;<span class="hljs-type">int</span>&gt;()&#125;;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : numbers1) &#123;<br>        std::cout &lt;&lt; num &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>    &#125;<br>    std::cout &lt;&lt; std::endl;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : numbers2) &#123;<br>        std::cout &lt;&lt; num &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>为了避免对象初始化和函数声明之间的歧义，可以使用额外的括号或列表初始化语法。这些方法可以确保编译器正确解析代码，避免最令人困惑的解析问题。</p>
+<h4 id="CANCELLED-1"><a href="#CANCELLED-1" class="headerlink" title="CANCELLED (1)"></a>CANCELLED (1)</h4><ul>
+<li><strong>操作被取消，通常是调用方主动请求的。</strong></li>
+<li><strong>常见使用场景</strong>：调用方在操作完成前取消了请求。</li>
+<li><strong>错误处理建议</strong>：检查调用逻辑，确保在取消请求时释放资源，避免内存泄漏。</li>
+</ul>
+<h4 id="UNKNOWN-2"><a href="#UNKNOWN-2" class="headerlink" title="UNKNOWN (2)"></a>UNKNOWN (2)</h4><ul>
+<li><strong>未知错误。如果从另一个地址空间接收到的状态值属于在此地址空间未知的错误空间，或者API没有返回足够的错误信息，可能会返回此错误。</strong></li>
+<li><strong>常见使用场景</strong>：系统内部错误，或者接收到来自未知错误空间的状态。</li>
+<li><strong>错误处理建议</strong>：记录错误详情，尝试重新执行操作，如果问题持续，可能需要联系系统管理员。</li>
+</ul>
+<h4 id="INVALID-ARGUMENT-3"><a href="#INVALID-ARGUMENT-3" class="headerlink" title="INVALID_ARGUMENT (3)"></a>INVALID_ARGUMENT (3)</h4><ul>
+<li><strong>客户端指定了无效的参数。与 <code>FAILED_PRECONDITION</code> 不同，<code>INVALID_ARGUMENT</code> 表示无论系统状态如何，参数本身都是有问题的（例如，文件名格式错误）。</strong></li>
+<li><strong>常见使用场景</strong>：调用方提供了不合规范的参数。</li>
+<li><strong>错误处理建议</strong>：验证输入参数的有效性，提供清晰的错误信息给调用方。</li>
+</ul>
+<h4 id="DEADLINE-EXCEEDED-4"><a href="#DEADLINE-EXCEEDED-4" class="headerlink" title="DEADLINE_EXCEEDED (4)"></a>DEADLINE_EXCEEDED (4)</h4><ul>
+<li><strong>操作在完成前已超时。对于改变系统状态的操作，即使操作本身已经成功完成，也可能返回此错误。例如，即使服务器的响应是成功的，如果响应延迟导致超时，也可能返回此错误。</strong></li>
+<li><strong>常见使用场景</strong>：操作因超时而未能完成。</li>
+<li><strong>错误处理建议</strong>：根据操作性质决定是否重试，考虑增加超时时间或优化性能。</li>
+</ul>
+<h4 id="NOT-FOUND-5"><a href="#NOT-FOUND-5" class="headerlink" title="NOT_FOUND (5)"></a>NOT_FOUND (5)</h4><ul>
+<li><strong>请求的实体（如文件或目录）未找到。</strong></li>
+<li><strong>常见使用场景</strong>：请求的资源（如文件、目录或数据库记录）不存在。</li>
+<li><strong>错误处理建议</strong>：确认资源路径或标识符，提供错误信息并可能要求用户重新输入。</li>
+</ul>
+<h4 id="ALREADY-EXISTS-6"><a href="#ALREADY-EXISTS-6" class="headerlink" title="ALREADY_EXISTS (6)"></a>ALREADY_EXISTS (6)</h4><ul>
+<li><strong>尝试创建的实体（如文件或目录）已存在。</strong></li>
+<li><strong>常见使用场景</strong>：尝试创建已存在的资源。</li>
+<li><strong>错误处理建议</strong>：检查资源是否已存在，提供更新或删除现有资源的选项。</li>
+</ul>
+<h4 id="PERMISSION-DENIED-7"><a href="#PERMISSION-DENIED-7" class="headerlink" title="PERMISSION_DENIED (7)"></a>PERMISSION_DENIED (7)</h4><ul>
+<li><strong>调用者没有执行指定操作的权限。<code>PERMISSION_DENIED</code> 不应用于因资源耗尽导致的拒绝（应使用 <code>RESOURCE_EXHAUSTED</code>），也不应用于无法识别调用者的情况（应使用 <code>UNAUTHENTICATED</code>）。</strong></li>
+<li><strong>常见使用场景</strong>：调用方没有足够的权限执行操作。</li>
+<li><strong>错误处理建议</strong>：要求调用方提供适当的权限或认证信息。</li>
+</ul>
+<h4 id="RESOURCE-EXHAUSTED-8"><a href="#RESOURCE-EXHAUSTED-8" class="headerlink" title="RESOURCE_EXHAUSTED (8)"></a>RESOURCE_EXHAUSTED (8)</h4><ul>
+<li><strong>资源耗尽，可能是每个用户的配额，或者整个文件系统没有空间。</strong></li>
+<li><strong>常见使用场景</strong>：系统资源耗尽，如达到API调用配额限制。</li>
+<li><strong>错误处理建议</strong>：实施资源配额管理，提示用户减少请求频率或升级服务。</li>
+</ul>
+<h4 id="FAILED-PRECONDITION-9"><a href="#FAILED-PRECONDITION-9" class="headerlink" title="FAILED_PRECONDITION (9)"></a>FAILED_PRECONDITION (9)</h4><ul>
+<li><strong>操作因系统不在操作执行所需的状态而被拒绝。例如，要删除的目录可能不为空，或者对非目录应用了删除操作等。</strong></li>
+<li><strong>常见使用场景</strong>：操作依赖于特定的系统状态，而当前状态不满足要求。</li>
+<li><strong>错误处理建议</strong>：确保所有前提条件都满足后再重试操作。</li>
+</ul>
+<h4 id="ABORTED-10"><a href="#ABORTED-10" class="headerlink" title="ABORTED (10)"></a>ABORTED (10)</h4><ul>
+<li><strong>由于并发问题（如序列号检查失败、事务中止等）通常会导致操作中止。</strong></li>
+<li><strong>常见使用场景</strong>：由于并发问题，如事务冲突，操作被中止。</li>
+<li><strong>错误处理建议</strong>：检查并发控制机制，可能需要重试或调整事务逻辑。</li>
+</ul>
+<h4 id="OUT-OF-RANGE-11"><a href="#OUT-OF-RANGE-11" class="headerlink" title="OUT_OF_RANGE (11)"></a>OUT_OF_RANGE (11)</h4><ul>
+<li><strong>操作尝试超出有效范围。例如，尝试读取文件末尾之后的内容。</strong></li>
+<li><strong>常见使用场景</strong>：操作尝试超出了有效范围，如索引超出数组界限。</li>
+<li><strong>错误处理建议</strong>：检查索引或范围参数，确保它们在有效范围内。</li>
+</ul>
+<h4 id="UNIMPLEMENTED-12"><a href="#UNIMPLEMENTED-12" class="headerlink" title="UNIMPLEMENTED (12)"></a>UNIMPLEMENTED (12)</h4><ul>
+<li><strong>操作未实现或在此服务中不支持&#x2F;未启用。</strong></li>
+<li><strong>常见使用场景</strong>：请求的方法或功能在服务中未被实现。</li>
+<li><strong>错误处理建议</strong>：提示调用方该功能不可用，或提供替代方案。</li>
+</ul>
+<h4 id="INTERNAL-13"><a href="#INTERNAL-13" class="headerlink" title="INTERNAL (13)"></a>INTERNAL (13)</h4><ul>
+<li><strong>内部错误。意味着底层系统预期的一些不变量已被破坏。如果看到这些错误，说明有严重的问题。</strong></li>
+<li><strong>常见使用场景</strong>：内部错误，如系统崩溃或严重的程序错误。</li>
+<li><strong>错误处理建议</strong>：记录错误详情，尝试重启服务或联系技术支持。</li>
+</ul>
+<h4 id="UNAVAILABLE-14"><a href="#UNAVAILABLE-14" class="headerlink" title="UNAVAILABLE (14)"></a>UNAVAILABLE (14)</h4><ul>
+<li><strong>服务当前不可用。这很可能是暂时性的条件，通过带有退避的重试可能会得到纠正。注意，对于非幂等操作，重试并不总是安全的。</strong></li>
+<li><strong>常见使用场景</strong>：服务不可用，可能是由于过载或维护。</li>
+<li><strong>错误处理建议</strong>：实施重试机制，增加退避策略，或提示用户稍后再试。</li>
+</ul>
+<h4 id="DATA-LOSS-15"><a href="#DATA-LOSS-15" class="headerlink" title="DATA_LOSS (15)"></a>DATA_LOSS (15)</h4><ul>
+<li><strong>不可恢复的数据丢失或损坏。</strong></li>
+<li><strong>常见使用场景</strong>：数据丢失或损坏，无法恢复。</li>
+<li><strong>错误处理建议</strong>：尝试从备份中恢复数据，如果没有备份，可能需要手动重建丢失的数据。</li>
+</ul>
+<h4 id="UNAUTHENTICATED-16"><a href="#UNAUTHENTICATED-16" class="headerlink" title="UNAUTHENTICATED (16)"></a>UNAUTHENTICATED (16)</h4><ul>
+<li><strong>请求没有有效的认证凭据进行操作。</strong></li>
+<li><strong>常见使用场景</strong>：调用方未提供有效的认证凭据。</li>
+<li><strong>错误处理建议</strong>：要求调用方进行认证。</li>
+</ul>
+<h4 id="DO-NOT-USE-1"><a href="#DO-NOT-USE-1" class="headerlink" title="DO_NOT_USE (-1)"></a>DO_NOT_USE (-1)</h4><ul>
+<li><strong>强制用户包含一个默认分支。</strong></li>
+<li><strong>常见使用场景</strong>：这是一个保留值，不应用于实际的错误状态。</li>
+<li><strong>错误处理建议</strong>：如果遇到此状态码，检查代码逻辑，确保没有错误地使用此值。</li>
+</ul>
 
                 
               </div>
@@ -310,34 +380,11 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/C/" class="category-chain-item">C++</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/C/" class="print-no-link">#C++</a>
-      
-        <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" class="print-no-link">#初始化</a>
+        <a href="/tags/gRPC/" class="print-no-link">#gRPC</a>
       
     </div>
   
@@ -349,8 +396,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>对象初始化和函数声明的语法可能会产生歧义</div>
-      <div>https://linhanmic.github.io/2024/09/24/对象初始化和函数声明的语法可能会产生歧义/</div>
+      <div>gRPC 状态码枚举文档</div>
+      <div>https://linhanmic.github.io/2024/09/26/gRPC状态码枚举文档/</div>
     </div>
     <div class="license-meta">
       
@@ -362,13 +409,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月24日</div>
+          <div>2024年9月26日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月24日</div>
+          <div>2024年9月26日</div>
         </div>
       
       
@@ -399,9 +446,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/26/gRPC%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="gRPC 基本使用">
+                      <a href="/2024/09/26/C%E5%BA%93%E5%87%BD%E6%95%B0-snprintf/" title="C 库函数 - snprintf()">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">gRPC 基本使用</span>
+                        <span class="hidden-mobile">C 库函数 - snprintf()</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -409,8 +456,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/24/%E7%BB%B4%E5%90%89%E5%B0%BC%E4%BA%9A%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95/" title="维吉尼亚加密和解密算法">
-                        <span class="hidden-mobile">维吉尼亚加密和解密算法</span>
+                      <a href="/2024/09/26/gRPC%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="gRPC 基本使用">
+                        <span class="hidden-mobile">gRPC 基本使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -433,7 +480,7 @@
         var options = Object.assign(
           {"clientID":"Ov23liobGiyahRXFQLc1","clientSecret":"c5e0ba5633a0f11d1c195edea442a7c0a3350350","repo":"HexoBlogGitalk","owner":"Linhanmic","admin":["Linhanmic"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"first","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '529abe901db3d83e2486b2cab8968720'
+            id: 'dcbd49a9db9efc6647749eb1e088c88a'
           }
         )
         var gitalk = new Gitalk(options);

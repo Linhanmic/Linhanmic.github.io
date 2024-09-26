@@ -19,23 +19,23 @@
   <meta name="author" content="Linhanmic">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在C++中，有时对象初始化和函数声明的语法可能会产生歧义，导致编译器无法正确解析代码。这种情况被称为“最令人困惑的解析”（Most Vexing Parse）。为了避免这种歧义，可以使用额外的括号或其他语法技巧来明确表达意图。">
+    <meta name="description" content="snprintf() 是一个 C 语言标准库函数，用于格式化输出指定大小的字符串，并将结果写入到指定的缓冲区。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对象初始化和函数声明的语法可能会产生歧义">
-<meta property="og:url" content="https://linhanmic.github.io/2024/09/24/%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E7%9A%84%E8%AF%AD%E6%B3%95%E5%8F%AF%E8%83%BD%E4%BC%9A%E4%BA%A7%E7%94%9F%E6%AD%A7%E4%B9%89/index.html">
+<meta property="og:title" content="C 库函数 - snprintf()">
+<meta property="og:url" content="https://linhanmic.github.io/2024/09/26/C%E5%BA%93%E5%87%BD%E6%95%B0-snprintf/index.html">
 <meta property="og:site_name" content="Linhanmic">
-<meta property="og:description" content="在C++中，有时对象初始化和函数声明的语法可能会产生歧义，导致编译器无法正确解析代码。这种情况被称为“最令人困惑的解析”（Most Vexing Parse）。为了避免这种歧义，可以使用额外的括号或其他语法技巧来明确表达意图。">
+<meta property="og:description" content="snprintf() 是一个 C 语言标准库函数，用于格式化输出指定大小的字符串，并将结果写入到指定的缓冲区。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-24T15:25:06.000Z">
-<meta property="article:modified_time" content="2024-09-24T15:26:25.419Z">
+<meta property="article:published_time" content="2024-09-26T06:42:16.000Z">
+<meta property="article:modified_time" content="2024-09-26T06:50:41.777Z">
 <meta property="article:author" content="Linhanmic">
-<meta property="article:tag" content="C++">
-<meta property="article:tag" content="初始化">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="字符串">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>对象初始化和函数声明的语法可能会产生歧义 - Linhanmic</title>
+  <title>C 库函数 - snprintf() - Linhanmic</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="对象初始化和函数声明的语法可能会产生歧义"></span>
+            <span id="subtitle" data-typed-text="C 库函数 - snprintf()"></span>
           
         </div>
 
@@ -217,8 +217,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-24 23:25" pubdate>
-          2024年9月24日 晚上
+        <time datetime="2024-09-26 14:42" pubdate>
+          2024年9月26日 下午
         </time>
       </span>
     
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          626 字
+          543 字
         
       </span>
     
@@ -240,7 +240,7 @@
         
         
         
-          6 分钟
+          5 分钟
         
       </span>
     
@@ -277,31 +277,28 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">对象初始化和函数声明的语法可能会产生歧义</h1>
+            <h1 id="seo-header">C 库函数 - snprintf()</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="对象初始化和函数声明的语法可能会产生歧义"><a href="#对象初始化和函数声明的语法可能会产生歧义" class="headerlink" title="对象初始化和函数声明的语法可能会产生歧义"></a><strong>对象初始化和函数声明的语法可能会产生歧义</strong></h1><p>在C++中，有时对象初始化和函数声明的语法可能会产生歧义，导致编译器无法正确解析代码。这种情况被称为“最令人困惑的解析”（Most Vexing Parse）。为了避免这种歧义，可以使用额外的括号或其他语法技巧来明确表达意图。</p>
-<h3 id="示例：最令人困惑的解析"><a href="#示例：最令人困惑的解析" class="headerlink" title="示例：最令人困惑的解析"></a>示例：最令人困惑的解析</h3><p>假设我们有以下代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">numbers</span><span class="hljs-params">(std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;(iss), std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;())</span></span>;<br></code></pre></td></tr></table></figure>
+                <h1 id="C-库函数-snprintf"><a href="#C-库函数-snprintf" class="headerlink" title="C 库函数 - snprintf()"></a>C 库函数 - <code>snprintf()</code></h1><p>头文件 <code>&lt;stdio.h&gt;</code></p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p><code>snprintf()</code> 是一个 C 语言标准库函数，用于格式化输出字符串，并将结果写入到指定的缓冲区。与 <code>sprintf()</code> 不同的是，<code>snprintf()</code> 会限制输出的字符数，避免缓冲区溢出。</p>
+<p>C 库函数 <strong>int snprintf(char *str, size_t size, const char *format, …)</strong> 将可变参数 <strong>(…)</strong> 按照 <strong>format</strong> 格式化成字符串，并将字符串复制到 <strong>str</strong> 中，<strong>size</strong> 为要写入的字符的最大数目，超过 <strong>size</strong> 会被截断，最多写入 <code>size-1</code> 个字符。</p>
+<p>与 <a target="_blank" rel="noopener" href="https://www.runoob.com/cprogramming/c-function-sprintf.html">sprintf()</a> 函数不同的是，<code>snprintf()</code> 函数提供了一个参数 <code>size</code>，可以防止缓冲区溢出。如果格式化后的字符串长度超过了 <code>size-1</code>，则 <code>snprintf()</code> 只会写入 <code>size-1</code> 个字符，并在字符串的末尾添加一个空字符（<code>\0</code>）以表示字符串的结束。</p>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">snprintf</span><span class="hljs-params">(<span class="hljs-type">char</span> *str, <span class="hljs-type">size_t</span> size, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *format, ...)</span>;<br></code></pre></td></tr></table></figure>
 
-<p>编译器可能会将其解释为一个函数声明，而不是对象的初始化。为了避免这种情况，我们可以使用额外的括号来明确表示这是一个对象的初始化：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">numbers</span><span class="hljs-params">((std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;(iss)), std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;())</span></span>;<br></code></pre></td></tr></table></figure>
-
-<h3 id="详细解释"><a href="#详细解释" class="headerlink" title="详细解释"></a>详细解释</h3><ul>
-<li><code>std::istream_iterator&lt;int&gt;(iss)</code>：创建一个从输入流 <code>iss</code> 中读取整数的迭代器。</li>
-<li><code>std::istream_iterator&lt;int&gt;()</code>：创建一个默认构造的流迭代器，表示流的结束。</li>
-<li><code>std::vector&lt;int&gt;</code> 的构造函数接受两个迭代器，表示要复制的范围。</li>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><ul>
+<li><strong>str</strong>：目标字符串，用于存储格式化后的字符串的字符数组的指针。</li>
+<li><strong>size</strong>：字符数组的大小。</li>
+<li><strong>format</strong>：格式化字符串。</li>
+<li>**…**：可变参数，根据 <code>format</code> 中的格式化指令进行格式化。</li>
 </ul>
-<h3 id="其他避免歧义的方法"><a href="#其他避免歧义的方法" class="headerlink" title="其他避免歧义的方法"></a>其他避免歧义的方法</h3><p>除了使用额外的括号，还可以使用其他方法来避免歧义，例如使用C++11引入的列表初始化语法：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::vector&lt;<span class="hljs-type">int</span>&gt; numbers&#123;std::<span class="hljs-built_in">istream_iterator</span>&lt;<span class="hljs-type">int</span>&gt;(iss), std::<span class="hljs-built_in">istream_iterator</span>&lt;<span class="hljs-type">int</span>&gt;()&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p><code>snprintf()</code> 函数的返回值是输出到 <code>str</code> 缓冲区中的字符数，不包括字符串结尾的空字符 <code>\0</code>。如果 <code>snprintf()</code> 输出的字符数超过了 <code>size</code> 参数指定的缓冲区大小，则输出的结果会被截断，只有 <code>size - 1</code> 个字符被写入缓冲区，最后一个字符为字符串结尾的空字符 <code>\0</code>。</p>
+<p>需要注意的是，<code>snprintf()</code> 函数返回的字符数并不包括字符串结尾的空字符 <code>\0</code>，因此如果需要将输出结果作为一个字符串使用，则需要在缓冲区的末尾添加一个空字符 <code>\0</code>。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">char</span> buffer[<span class="hljs-number">50</span>];<br>    <span class="hljs-type">int</span> n;<br><br>    n = <span class="hljs-built_in">snprintf</span>(buffer, <span class="hljs-keyword">sizeof</span>(buffer), <span class="hljs-string">&quot;Hello, %s!&quot;</span>, <span class="hljs-string">&quot;World&quot;</span>);<br><br>    <span class="hljs-keyword">if</span> (n &gt;= <span class="hljs-number">0</span> &amp;&amp; n &lt; <span class="hljs-keyword">sizeof</span>(buffer)) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Formatted string: %s\n&quot;</span>, buffer);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Buffer size is too small. Required size: %d\n&quot;</span>, n + <span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>这种语法明确表示这是一个对象的初始化，而不是函数声明。</p>
-<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><p>以下是使用额外括号和列表初始化语法的完整示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sstream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iterator&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    std::string str&#123;<span class="hljs-string">&quot;1 2 3 4 5&quot;</span>&#125;;<br>    <span class="hljs-function">std::istringstream <span class="hljs-title">iss</span><span class="hljs-params">(str)</span></span>;<br><br>    <span class="hljs-comment">// 使用额外括号避免歧义</span><br>    <span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">numbers1</span><span class="hljs-params">((std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;(iss)), std::istream_iterator&lt;<span class="hljs-type">int</span>&gt;())</span></span>;<br><br>    <span class="hljs-comment">// 使用列表初始化语法避免歧义</span><br>    <span class="hljs-function">std::istringstream <span class="hljs-title">iss2</span><span class="hljs-params">(str)</span></span>; <span class="hljs-comment">// 重新初始化流，因为上面的流已经被读取完毕</span><br>    std::vector&lt;<span class="hljs-type">int</span>&gt; numbers2&#123;std::<span class="hljs-built_in">istream_iterator</span>&lt;<span class="hljs-type">int</span>&gt;(iss2), std::<span class="hljs-built_in">istream_iterator</span>&lt;<span class="hljs-type">int</span>&gt;()&#125;;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : numbers1) &#123;<br>        std::cout &lt;&lt; num &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>    &#125;<br>    std::cout &lt;&lt; std::endl;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : numbers2) &#123;<br>        std::cout &lt;&lt; num &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>为了避免对象初始化和函数声明之间的歧义，可以使用额外的括号或列表初始化语法。这些方法可以确保编译器正确解析代码，避免最令人困惑的解析问题。</p>
+<p>在这个示例中，<code>snprintf()</code> 将格式化后的字符串写入 <code>buffer</code> 中，并确保不会超过缓冲区的大小。</p>
 
                 
               </div>
@@ -310,34 +307,13 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/C/" class="category-chain-item">C++</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/C/" class="print-no-link">#C++</a>
+        <a href="/tags/C/" class="print-no-link">#C</a>
       
-        <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" class="print-no-link">#初始化</a>
+        <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="print-no-link">#字符串</a>
       
     </div>
   
@@ -349,8 +325,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>对象初始化和函数声明的语法可能会产生歧义</div>
-      <div>https://linhanmic.github.io/2024/09/24/对象初始化和函数声明的语法可能会产生歧义/</div>
+      <div>C 库函数 - snprintf()</div>
+      <div>https://linhanmic.github.io/2024/09/26/C库函数-snprintf/</div>
     </div>
     <div class="license-meta">
       
@@ -362,13 +338,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月24日</div>
+          <div>2024年9月26日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月24日</div>
+          <div>2024年9月26日</div>
         </div>
       
       
@@ -399,9 +375,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/26/gRPC%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="gRPC 基本使用">
+                      <a href="/2024/09/26/C%E5%BA%93%E5%87%BD%E6%95%B0-fgets/" title="C 库函数 - fgets()">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">gRPC 基本使用</span>
+                        <span class="hidden-mobile">C 库函数 - fgets()</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -409,8 +385,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/24/%E7%BB%B4%E5%90%89%E5%B0%BC%E4%BA%9A%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95/" title="维吉尼亚加密和解密算法">
-                        <span class="hidden-mobile">维吉尼亚加密和解密算法</span>
+                      <a href="/2024/09/26/gRPC%E7%8A%B6%E6%80%81%E7%A0%81%E6%9E%9A%E4%B8%BE%E6%96%87%E6%A1%A3/" title="gRPC 状态码枚举文档">
+                        <span class="hidden-mobile">gRPC 状态码枚举文档</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -433,7 +409,7 @@
         var options = Object.assign(
           {"clientID":"Ov23liobGiyahRXFQLc1","clientSecret":"c5e0ba5633a0f11d1c195edea442a7c0a3350350","repo":"HexoBlogGitalk","owner":"Linhanmic","admin":["Linhanmic"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"first","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '529abe901db3d83e2486b2cab8968720'
+            id: 'bb20d4ba927ba470cb712a1479a96943'
           }
         )
         var gitalk = new Gitalk(options);
